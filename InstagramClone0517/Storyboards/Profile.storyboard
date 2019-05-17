@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="6uq-e8-bKt">
+            <objects>
+                <viewController id="ECG-Ic-4bZ" customClass="ProfileViewController" customModule="InstagramClone0517" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iY7-C6-ynM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="eLJ-rU-pKs"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mcE-d1-Vys"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LfF-94-Wfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3005.5999999999999" y="2077.5112443778112"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rRt-qc-1gs">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationProfile" automaticallyAdjustsScrollViewInsets="NO" id="YlB-Sw-ws6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Profile" selectedImage="Profile_Selected" id="CrO-wW-RFJ">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C0T-VN-WwP">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ECG-Ic-4bZ" kind="relationship" relationship="rootViewController" id="i7R-qd-D14"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KA1-EG-i5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1790" y="2078"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Profile" width="20" height="21"/>
+        <image name="Profile_Selected" width="20" height="21"/>
+    </resources>
+</document>
