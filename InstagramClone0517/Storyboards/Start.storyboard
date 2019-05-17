@@ -12,7 +12,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="mD0-jJ-DNy">
             <objects>
-                <viewController id="w1P-wj-PUk" customClass="SignInViewController" customModule="InstagramClone0517" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" id="w1P-wj-PUk" customClass="SignInViewController" customModule="InstagramClone0517" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0F1-XH-RwQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,7 +44,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="ログインする"/>
                                 <connections>
-                                    <segue destination="4wb-4x-9eN" kind="presentation" id="35B-lb-8Vg"/>
+                                    <action selector="signInBtn_TouchUpInside:" destination="w1P-wj-PUk" eventType="touchUpInside" id="x5b-Nu-wIc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZ5-lJ-tYT">
@@ -77,6 +77,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l0i-wJ-b32"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="tCm-Ng-s5W" id="VdS-HE-K0i"/>
+                        <outlet property="passwordTextField" destination="aKR-ly-zTF" id="raM-Uv-ShK"/>
+                        <outlet property="signInBtn" destination="ILW-y2-6yK" id="tct-Yh-MBK"/>
+                        <segue destination="4wb-4x-9eN" kind="show" identifier="signInToTabbarSegue" id="9OA-sm-fdt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3n1-jI-rEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,7 +91,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="Vak-Qb-u7J">
             <objects>
-                <viewController id="7Ol-jB-9YP" customClass="SignUpViewController" customModule="InstagramClone0517" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="7Ol-jB-9YP" customClass="SignUpViewController" customModule="InstagramClone0517" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ozr-6i-zP9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,7 +117,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="サインアップする"/>
                                 <connections>
-                                    <segue destination="4wb-4x-9eN" kind="presentation" id="Wg4-fL-uyu"/>
+                                    <action selector="signUpBtn_TouchUpInside:" destination="7Ol-jB-9YP" eventType="touchUpInside" id="MV0-KL-fyV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G1J-uV-6QC">
@@ -161,7 +167,12 @@
                         <viewLayoutGuide key="safeArea" id="SDd-kA-0e5"/>
                     </view>
                     <connections>
+                        <outlet property="mailTextField" destination="XEZ-kI-1Aa" id="GnW-0S-I1W"/>
+                        <outlet property="nameTextField" destination="BcX-od-u4s" id="Cis-Kl-1NL"/>
+                        <outlet property="passwordTextField" destination="sl0-oI-fmg" id="kRa-uH-4PP"/>
                         <outlet property="profileImageView" destination="Ck5-WA-Olg" id="eOG-9Y-yuZ"/>
+                        <outlet property="signUpBtn" destination="yhR-ea-ZX1" id="8qb-yv-TNh"/>
+                        <segue destination="4wb-4x-9eN" kind="show" identifier="signUpToTabbarSegue" id="JaL-De-co1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r7Q-Nk-TOJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -181,6 +192,6 @@
         <image name="placeholderImg" width="225" height="225"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="35B-lb-8Vg"/>
+        <segue reference="9OA-sm-fdt"/>
     </inferredMetricsTieBreakers>
 </document>
