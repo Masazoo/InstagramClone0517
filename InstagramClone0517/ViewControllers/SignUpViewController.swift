@@ -38,7 +38,7 @@ class SignUpViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func handoleSelectProfileImageView() {
+    func handoleSelectProfileImageView() {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
