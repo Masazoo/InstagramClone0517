@@ -31,7 +31,12 @@ class HelperService {
         let postsRef = Database.database().reference().child("posts")
         let newPostId = postsRef.childByAutoId().key
         let newUserRef = postsRef.child(newPostId!)
-        newUserRef.setValue(["captionText": captionText, "profileImageUrl": profileImageUrl])
+        guard let currentUser = Api.User.CURRENT_USER else {
+            return
+        }
+        let currentUserId = currentUser.uid
+        
+        newUserRef.setValue(["captionText": captionText, "postImageUrl": profileImageUrl, "uid": currentUserId])
         ProgressHUD.showSuccess("投稿されました")
         onSuccess()
     }
