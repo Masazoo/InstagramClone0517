@@ -68,9 +68,12 @@
                                                         <constraint firstAttribute="width" constant="22" id="8Kh-3K-emA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bh0-eZ-B2K">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bh0-eZ-B2K">
                                                     <rect key="frame" x="15" y="448" width="151" height="30"/>
-                                                    <state key="normal" title="最初のLikeを押してね"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="最初のLikeを押してね">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfm-yD-ngF">
                                                     <rect key="frame" x="15" y="488" width="345" height="21"/>
@@ -249,6 +252,7 @@
                     </view>
                     <connections>
                         <outlet property="commentTextField" destination="mCw-AB-Q7g" id="igC-gS-eFI"/>
+                        <outlet property="constraintToButtom" destination="3H5-tF-i6i" id="BUH-hO-ZwV"/>
                         <outlet property="sendBtn" destination="TIL-oU-dtv" id="ATC-o7-6tk"/>
                         <outlet property="tableView" destination="CTT-uw-a9t" id="1AC-wc-W1l"/>
                     </connections>

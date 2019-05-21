@@ -13,6 +13,7 @@ class CommentViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var constraintToButtom: NSLayoutConstraint!
     
     var postId = ""
     var comments = [Comment]()
@@ -26,7 +27,30 @@ class CommentViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         
+        handleTextField()
+        sendButtonDefault()
         loadComments()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    // textFieldとkeyboardの設定
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    func keyboardWillShow(_ notification: NSNotification) {
+        let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        UIView.animate(withDuration: 0.3) {
+            self.constraintToButtom.constant = -(keyboardFrame!.height)
+            self.view.layoutIfNeeded()
+        }
+    }
+    func keyboardWillHide(_ notification: NSNotification) {
+        UIView.animate(withDuration: 0.3) {
+            self.constraintToButtom.constant = 0
+            self.view.layoutIfNeeded()
+        }
     }
     
     
@@ -59,6 +83,34 @@ class CommentViewController: UIViewController {
         }
     }
     
+    // textFieldとbutton周りの設定
+    func handleTextField() {
+        commentTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+    }
+    func textFieldDidChange() {
+        guard let comment = commentTextField.text, !comment.isEmpty else {
+            sendButtonDefault()
+            return
+        }
+        sendBtn.setTitleColor(.black, for: .normal)
+        sendBtn.isEnabled = true
+    }
+    
+    // sendButtonのデフォルト設定
+    func sendButtonDefault() {
+        sendBtn.setTitleColor(.gray, for: .normal)
+        sendBtn.isEnabled = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
 }
 extension CommentViewController: UITableViewDataSource {

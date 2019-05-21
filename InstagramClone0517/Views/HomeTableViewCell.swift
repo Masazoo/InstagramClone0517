@@ -45,6 +45,12 @@ class HomeTableViewCell: UITableViewCell {
             let photoUrl = URL(string: photoUrlString)
             postImageView.sd_setImage(with: photoUrl)
         }
+        
+        self.updateLike(post: self.post!)
+        
+        Api.Post.observeLikeCount(postId: self.post!.postId!) { (value) in
+            self.likeCountBtn.setTitle("\(value) likes", for: .normal)
+        }
     }
     
     func setupUserInfo() {
@@ -52,6 +58,20 @@ class HomeTableViewCell: UITableViewCell {
         if let profileUrlString = user?.profileImageUrl {
             let profileImageUrl = URL(string: profileUrlString)
             profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg"))
+        }
+    }
+    
+    func updateLike(post: Post) {
+        let imageName = post.likes == nil || !post.isLiked! ? "like" : "likeSelected"
+        likeImageView.image = UIImage(named: imageName)
+        
+        guard let count = post.likeCount else {
+            return
+        }
+        if count != 0 {
+            likeCountBtn.setTitle("\(count) likes", for: .normal)
+        } else {
+            likeCountBtn.setTitle("最初のライクを押してね！", for: .normal)
         }
     }
     
@@ -69,10 +89,25 @@ class HomeTableViewCell: UITableViewCell {
         let tapGestureForCommentImageView = UITapGestureRecognizer(target: self, action: #selector(self.commentImageView_TouchUpInside))
         commentImageView.addGestureRecognizer(tapGestureForCommentImageView)
         commentImageView.isUserInteractionEnabled = true
+        let tapGestureForLikeImageView = UITapGestureRecognizer(target: self, action: #selector(self.likeImageView_TouchUpInside))
+        likeImageView.addGestureRecognizer(tapGestureForLikeImageView)
+        likeImageView.isUserInteractionEnabled = true
     }
+    
     
     func commentImageView_TouchUpInside() {
         delegate?.goToCommentVC(postId: post!.postId!)
+    }
+    
+    func likeImageView_TouchUpInside() {
+        Api.Post.incrementLikeCount(withId: self.post!.postId!, onSuccess: { (post) in
+            self.updateLike(post: post)
+            self.post?.likes = post.likes
+            self.post?.likeCount = post.likeCount
+            self.post?.isLiked = post.isLiked
+        }) { (error) in
+            ProgressHUD.showError(error)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

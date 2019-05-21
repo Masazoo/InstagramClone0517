@@ -53,6 +53,7 @@ class CameraViewController: UIViewController {
         self.selectedImage = nil
     }
     
+    
 }
 extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

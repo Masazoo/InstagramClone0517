@@ -21,6 +21,7 @@ class UserApi {
     }
     
     
+    
     func observeUser(uid: String, completion: @escaping (UserModel) -> Void) {
         REF_USERS.child(uid).observeSingleEvent(of: .value, with: { (DataSnapshot) in
             if let dict = DataSnapshot.value as? [String: Any] {

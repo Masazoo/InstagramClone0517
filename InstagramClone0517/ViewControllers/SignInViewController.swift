@@ -30,8 +30,6 @@ class SignInViewController: UIViewController {
             self.performSegue(withIdentifier: "signInToTabbarSegue", sender: nil)
         }
     }
-
-    
     
     @IBAction func signInBtn_TouchUpInside(_ sender: Any) {
         AuthService.signIn(email: self.emailTextField.text!, password: self.passwordTextField.text!, onSuccess: {
