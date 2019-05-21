@@ -25,6 +25,15 @@ class PostApi {
         })
     }
     
+    func observePost(postId: String, completion: @escaping (Post) -> Void) {
+        REF_POSTS.child(postId).observeSingleEvent(of: .value, with: { (DataSnapshot) in
+            if let dict = DataSnapshot.value as? [String: Any] {
+                let newPost = Post.transformPost(dict: dict, key: DataSnapshot.key)
+                completion(newPost)
+            }
+        })
+    }
+    
     func observeLikeCount(postId: String, completion: @escaping (Int) -> Void) {
         REF_POSTS.child(postId).observe(.childChanged, with: { (DataSnapshot) in
             if let value = DataSnapshot.value as? Int {

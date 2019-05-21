@@ -34,9 +34,20 @@ class HelperService {
             return
         }
         let currentUserId = currentUser.uid
-        
-        newUserRef.setValue(["captionText": captionText, "postImageUrl": profileImageUrl, "uid": currentUserId])
-        ProgressHUD.showSuccess("投稿されました")
-        onSuccess()
+
+        newUserRef.setValue(["captionText": captionText, "postImageUrl": profileImageUrl, "uid": currentUserId, "likeCount": 0]) { (Error, DatabaseReference) in
+            if Error != nil {
+                ProgressHUD.showError(Error!.localizedDescription)
+            }
+            
+            let myPostsRef = Api.MyPosts.REF_MYPOSTS.child(currentUser.uid).child(newPostId!)
+            myPostsRef.setValue(true, withCompletionBlock: { (Error, DatabaseReference) in
+                if Error != nil {
+                    ProgressHUD.showError(Error!.localizedDescription)
+                }
+                ProgressHUD.showSuccess("投稿されました")
+                onSuccess()
+            })
+        }
     }
 }

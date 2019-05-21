@@ -30,4 +30,16 @@ class UserApi {
             }
         })
     }
+    
+    func observeCurrentUser(completion: @escaping (UserModel) -> Void) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (DataSnapshot) in
+            if let dict = DataSnapshot.value as? [String: Any] {
+                let newUser = UserModel.transformUser(dict: dict)
+                completion(newUser)
+            }
+        })
+    }
 }
