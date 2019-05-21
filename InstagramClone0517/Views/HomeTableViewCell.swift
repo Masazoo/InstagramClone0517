@@ -8,10 +8,12 @@
 
 import UIKit
 import SDWebImage
+protocol HomeTableViewCellDelegate {
+    func goToCommentVC(postId: String)
+}
 
 class HomeTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
@@ -21,6 +23,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCountBtn: UIButton!
     @IBOutlet weak var captionLabel: UILabel!
     
+    var delegate: HomeTableViewCellDelegate?
     
     var post: Post? {
         didSet {
@@ -55,11 +58,21 @@ class HomeTableViewCell: UITableViewCell {
     
     
     
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         profileImageView.layer.cornerRadius = 18
         profileImageView.clipsToBounds = true
+        
+        let tapGestureForCommentImageView = UITapGestureRecognizer(target: self, action: #selector(self.commentImageView_TouchUpInside))
+        commentImageView.addGestureRecognizer(tapGestureForCommentImageView)
+        commentImageView.isUserInteractionEnabled = true
+    }
+    
+    func commentImageView_TouchUpInside() {
+        delegate?.goToCommentVC(postId: post!.postId!)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

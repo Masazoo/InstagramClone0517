@@ -9,6 +9,9 @@
 import Foundation
 struct Api {
     
-    static var User = UserApi()
     static var Post = PostApi()
+    static var User = UserApi()
+    static var Comment = CommentApi()
+    static var post_comment = Post_CommentApi()
 }
+

@@ -26,7 +26,6 @@ class HelperService {
             })
         })
     }
-    
     static func setUserInfo(captionText: String, profileImageUrl: String, onSuccess: @escaping () -> Void) {
         let postsRef = Database.database().reference().child("posts")
         let newPostId = postsRef.childByAutoId().key
