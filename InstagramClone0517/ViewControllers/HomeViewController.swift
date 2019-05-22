@@ -18,8 +18,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.separatorStyle = .none
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         tableView.allowsSelection = false
         
         loadPost()

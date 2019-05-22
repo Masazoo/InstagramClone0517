@@ -141,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ko2-qR-r4K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3007.1999999999998" y="-851.42428785607206"/>
+            <point key="canvasLocation" x="2068" y="-57"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="gPP-se-abx">
@@ -259,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91q-cF-aVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3988" y="-851.42428785607206"/>
+            <point key="canvasLocation" x="2927" y="-57"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0eR-g2-L9O">
