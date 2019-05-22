@@ -137,11 +137,20 @@
                     <connections>
                         <outlet property="tableView" destination="VUy-Un-lvt" id="TR9-ik-ymT"/>
                         <segue destination="Q4g-o8-2V0" kind="show" identifier="HomeToCommentSegue" id="9C8-BA-Avq"/>
+                        <segue destination="OjW-WX-h42" kind="show" identifier="HomeToProfileUserSegue" id="GGj-Pk-MBF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ko2-qR-r4K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2068" y="-57"/>
+        </scene>
+        <!--ProfileUserViewController-->
+        <scene sceneID="bi6-lv-eia">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="OjW-WX-h42" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ajt-Kk-dTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3026" y="-819"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="gPP-se-abx">
@@ -255,6 +264,7 @@
                         <outlet property="constraintToButtom" destination="3H5-tF-i6i" id="BUH-hO-ZwV"/>
                         <outlet property="sendBtn" destination="TIL-oU-dtv" id="ATC-o7-6tk"/>
                         <outlet property="tableView" destination="CTT-uw-a9t" id="1AC-wc-W1l"/>
+                        <segue destination="OjW-WX-h42" kind="show" identifier="CommentToProfileUserSegue" id="Vdc-cf-o3S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91q-cF-aVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -292,4 +302,7 @@
         <image name="placeholderImg" width="225" height="225"/>
         <image name="share" width="37" height="41"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Vdc-cf-o3S"/>
+    </inferredMetricsTieBreakers>
 </document>

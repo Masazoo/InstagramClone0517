@@ -8,6 +8,9 @@
 
 import UIKit
 import SDWebImage
+protocol HeaderProfileCollectionReusableViewDelegate {
+    func updateFollwoBtn(user: UserModel)
+}
 
 class HeaderProfileCollectionReusableView: UICollectionReusableView {
     
@@ -18,7 +21,7 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var followerCountLabel: UILabel!
     @IBOutlet weak var followBtn: UIButton!
     
-    
+    var delegate: HeaderProfileCollectionReusableViewDelegate?
     
     var user: UserModel? {
         didSet {
@@ -31,6 +34,40 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
         if let profileUrlString = user?.profileImageUrl {
             let profileImageUrl = URL(string: profileUrlString)
             profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg"))
+        }
+        
+        if user!.isFollowing! {
+            configureUnFollowAction()
+        }else{
+            configureFollowAction()
+        }
+    }
+    
+    func configureFollowAction() {
+        followBtn.setTitle("フォローする", for: .normal)
+        followBtn.addTarget(self, action: #selector(self.followAction), for: .touchUpInside)
+    }
+    
+    func configureUnFollowAction() {
+        followBtn.setTitle("フォロー中", for: .normal)
+        followBtn.addTarget(self, action: #selector(self.unFollowAction), for: .touchUpInside)
+    }
+    
+    func followAction() {
+        if !user!.isFollowing! {
+            Api.Follow.followAction(uid: user!.uid!)
+            configureUnFollowAction()
+            user?.isFollowing = true
+            delegate?.updateFollwoBtn(user: user!)
+        }
+    }
+    
+    func unFollowAction() {
+        if user!.isFollowing! {
+            Api.Follow.unFollowAction(uid: user!.uid!)
+            configureFollowAction()
+            user?.isFollowing = false
+            delegate?.updateFollwoBtn(user: user!)
         }
     }
     

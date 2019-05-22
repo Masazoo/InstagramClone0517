@@ -8,12 +8,17 @@
 
 import UIKit
 import SDWebImage
+protocol PeopleTableViewCellDelegate {
+    func goToProfileUserVC(userId: String)
+}
 
 class PeopleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var followBtn: UIButton!
+    
+    var delegate: PeopleTableViewCellDelegate?
     
     var user: UserModel? {
         didSet {
@@ -68,6 +73,14 @@ class PeopleTableViewCell: UITableViewCell {
         super.awakeFromNib()
         profileImageView.layer.cornerRadius = 18
         profileImageView.clipsToBounds = true
+        
+        let tapGestureForNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.nameLabel_TouchUpInside))
+        nameLabel.addGestureRecognizer(tapGestureForNameLabel)
+        nameLabel.isUserInteractionEnabled = true
+    }
+    
+    func nameLabel_TouchUpInside() {
+        delegate?.goToProfileUserVC(userId: user!.uid!)
     }
 
     

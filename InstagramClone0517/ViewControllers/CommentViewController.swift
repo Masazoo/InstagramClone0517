@@ -112,6 +112,17 @@ class CommentViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "CommentToProfileUserSegue" {
+            let userId = sender as! String
+            let ProfileUserVC = segue.destination as! ProfileUserViewController
+            ProfileUserVC.userId = userId
+        }
+    }
+
+    
 }
 extension CommentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,6 +135,13 @@ extension CommentViewController: UITableViewDataSource {
         let user = users[indexPath.row]
         cell.comment = comment
         cell.user = user
+        cell.delegate = self
         return cell
     }
+}
+extension CommentViewController: CommentTableViewCellDelegate {
+    func goToProfileUserSegue(userId: String) {
+        self.performSegue(withIdentifier: "CommentToProfileUserSegue", sender: userId)
+    }
+    
 }

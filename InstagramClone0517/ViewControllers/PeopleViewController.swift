@@ -37,6 +37,15 @@ class PeopleViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PeopleToProfileUserSegue" {
+            let userId = sender as! String
+            let profileUserVC = segue.destination as! ProfileUserViewController
+            profileUserVC.userId = userId
+            profileUserVC.delegate = self
+        }
+    }
+    
     
 
 }
@@ -49,6 +58,23 @@ extension PeopleViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as! PeopleTableViewCell
         let user = users[indexPath.row]
         cell.user = user
+        cell.delegate = self
         return cell
     }
+}
+extension PeopleViewController: PeopleTableViewCellDelegate {
+    func goToProfileUserVC(userId: String) {
+        self.performSegue(withIdentifier: "PeopleToProfileUserSegue", sender: userId)
+    }
+}
+extension PeopleViewController: HeaderProfileCollectionReusableViewDelegate {
+    func updateFollwoBtn(user: UserModel) {
+        for u in self.users {
+            if u.uid == user.uid {
+                u.isFollowing = user.isFollowing
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
 }

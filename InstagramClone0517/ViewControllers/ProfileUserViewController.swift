@@ -1,19 +1,21 @@
 //
-//  ProfileViewController.swift
+//  ProfileUserViewController.swift
 //  InstagramClone0517
 //
-//  Created by mt on 2019/05/17.
+//  Created by mt on 2019/05/22.
 //  Copyright © 2019 mt. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileUserViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var userId = ""
     var user: UserModel!
     var posts = [Post]()
+    var delegate: HeaderProfileCollectionReusableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +24,13 @@ class ProfileViewController: UIViewController {
         collectionView.delegate = self
         
         fetchUser()
-        fetchPost()
+        fetchPosts()
     }
     
 
     func fetchUser() {
-        Api.User.observeCurrentUser { (user) in
-            Api.Follow.isFollowing(uid: user.uid!, completion: { (value) in
+        Api.User.observeUser(uid: self.userId) { (user) in
+            Api.Follow.isFollowing(uid: self.userId, completion: { (value) in
                 user.isFollowing = value
                 self.navigationItem.title = user.username
                 self.user = user
@@ -37,20 +39,18 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func fetchPost() {
-        guard let currentUser = Api.User.CURRENT_USER else {
-            return
-        }
-        Api.MyPosts.observeMyPosts(userId: currentUser.uid) { (postId) in
+    func fetchPosts() {
+        Api.MyPosts.observeMyPosts(userId: self.userId) { (postId) in
             Api.Post.observePost(postId: postId, completion: { (post) in
                 self.posts.append(post)
                 self.collectionView.reloadData()
             })
         }
     }
+    
 
 }
-extension ProfileViewController: UICollectionViewDataSource {
+extension ProfileUserViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }
@@ -66,11 +66,12 @@ extension ProfileViewController: UICollectionViewDataSource {
         let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderProfileCollectionReusableView", for: indexPath) as! HeaderProfileCollectionReusableView
         if let user = self.user {
             headerCell.user = user
+            headerCell.delegate = self.delegate
         }
         return headerCell
     }
 }
-extension ProfileViewController: UICollectionViewDelegateFlowLayout {
+extension ProfileUserViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
