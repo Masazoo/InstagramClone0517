@@ -127,13 +127,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3eI-3X-iaL"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TGV-V9-LV0">
-                        <barButtonItem key="leftBarButtonItem" title="ログアウト" id="oCw-QB-X5p">
-                            <connections>
-                                <action selector="signOutBtn_TouchUpInside:" destination="1sc-J4-bPN" id="ExG-lk-PU8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="TGV-V9-LV0"/>
                     <connections>
                         <outlet property="tableView" destination="VUy-Un-lvt" id="TR9-ik-ymT"/>
                         <segue destination="Q4g-o8-2V0" kind="show" identifier="HomeToCommentSegue" id="9C8-BA-Avq"/>
@@ -303,6 +297,6 @@
         <image name="share" width="37" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Vdc-cf-o3S"/>
+        <segue reference="GGj-Pk-MBF"/>
     </inferredMetricsTieBreakers>
 </document>

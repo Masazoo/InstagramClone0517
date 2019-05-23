@@ -78,7 +78,9 @@ class CommentViewController: UIViewController {
             Api.post_comment.sendDataToDatabase(postId: self.postId, commentId: commentId, onError: { (error) in
                 ProgressHUD.showError(error)
             }, onSuccess: {
-                ProgressHUD.showSuccess("投稿が成功しました")
+                self.commentTextField.text = ""
+                self.sendButtonDefault()
+                self.view.endEditing(true)
             })
         }
     }

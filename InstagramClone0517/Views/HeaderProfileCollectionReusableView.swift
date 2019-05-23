@@ -11,6 +11,9 @@ import SDWebImage
 protocol HeaderProfileCollectionReusableViewDelegate {
     func updateFollwoBtn(user: UserModel)
 }
+protocol HeaderProfileCollectionReusableViewDelegateSwiching {
+    func goToSettingVC()
+}
 
 class HeaderProfileCollectionReusableView: UICollectionReusableView {
     
@@ -22,6 +25,7 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var followBtn: UIButton!
     
     var delegate: HeaderProfileCollectionReusableViewDelegate?
+    var delegate2: HeaderProfileCollectionReusableViewDelegateSwiching?
     
     var user: UserModel? {
         didSet {
@@ -36,6 +40,15 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg"))
         }
         
+        if Api.User.CURRENT_USER?.uid == user?.uid {
+            followBtn.setTitle("編集する", for: .normal)
+            followBtn.addTarget(self, action: #selector(self.goToSetting), for: .touchUpInside)
+        }else{
+            updateFollowBtn()
+        }
+    }
+    
+    func updateFollowBtn() {
         if user!.isFollowing! {
             configureUnFollowAction()
         }else{
@@ -69,6 +82,10 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             user?.isFollowing = false
             delegate?.updateFollwoBtn(user: user!)
         }
+    }
+    
+    func goToSetting() {
+        delegate2?.goToSettingVC()
     }
     
     

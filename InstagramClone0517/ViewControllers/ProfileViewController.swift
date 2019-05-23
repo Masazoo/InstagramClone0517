@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
     
 
     func fetchUser() {
-        Api.User.observeCurrentUser { (user) in
+        Api.User.fetchCurrentUser { (user) in
             Api.Follow.isFollowing(uid: user.uid!, completion: { (value) in
                 user.isFollowing = value
                 self.navigationItem.title = user.username
@@ -48,6 +48,15 @@ class ProfileViewController: UIViewController {
             })
         }
     }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProfileToSettingSegue" {
+            let settingVC = segue.destination as! SettingTableViewController
+            settingVC.delegate = self
+        }
+    }
 
 }
 extension ProfileViewController: UICollectionViewDataSource {
@@ -66,6 +75,7 @@ extension ProfileViewController: UICollectionViewDataSource {
         let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderProfileCollectionReusableView", for: indexPath) as! HeaderProfileCollectionReusableView
         if let user = self.user {
             headerCell.user = user
+            headerCell.delegate2 = self
         }
         return headerCell
     }
@@ -81,5 +91,15 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width / 3 - 3, height: collectionView.frame.size.width / 3 - 3)
+    }
+}
+extension ProfileViewController: HeaderProfileCollectionReusableViewDelegateSwiching {
+    func goToSettingVC() {
+        self.performSegue(withIdentifier: "ProfileToSettingSegue", sender: nil)
+    }
+}
+extension ProfileViewController: SettingTableViewControllerDelegate {
+    func updateUserInfo() {
+        self.fetchUser()
     }
 }
