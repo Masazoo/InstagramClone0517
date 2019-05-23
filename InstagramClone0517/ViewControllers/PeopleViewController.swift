@@ -18,8 +18,9 @@ class PeopleViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
+//        tableView.allowsSelection = false
         
         loadUsers()
     }
@@ -49,7 +50,7 @@ class PeopleViewController: UIViewController {
     
 
 }
-extension PeopleViewController: UITableViewDataSource {
+extension PeopleViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
@@ -60,6 +61,12 @@ extension PeopleViewController: UITableViewDataSource {
         cell.user = user
         cell.delegate = self
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        let user = users[indexPath.row]
+        self.performSegue(withIdentifier: "PeopleToProfileUserSegue", sender: user.uid)
     }
 }
 extension PeopleViewController: PeopleTableViewCellDelegate {
@@ -76,5 +83,4 @@ extension PeopleViewController: HeaderProfileCollectionReusableViewDelegate {
             }
         }
     }
-    
 }

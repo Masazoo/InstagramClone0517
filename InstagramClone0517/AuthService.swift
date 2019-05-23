@@ -56,7 +56,7 @@ class AuthService {
     static func setUserInfo(uid: String, username: String, email: String, profileImageUrl: String, onSuccess: @escaping () -> Void) {
         let usersRef = Database.database().reference().child("users")
         let newUserRef = usersRef.child(uid)
-        newUserRef.setValue(["username": username, "email": email, "profileImageUrl": profileImageUrl])
+        newUserRef.setValue(["username": username, "username_lowercase": username.lowercased(), "email": email, "profileImageUrl": profileImageUrl])
         onSuccess()
     }
     
