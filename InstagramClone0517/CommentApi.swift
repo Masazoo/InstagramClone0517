@@ -31,8 +31,11 @@ class CommentApi {
             return
         }
         let currentUserId = currentUser.uid
-        newCommentRef.setValue(["commentText": commentText, "uid": currentUserId])
-    
-        onSuccess(newCommentId!)
+        newCommentRef.setValue(["commentText": commentText, "uid": currentUserId]) { (Error, DatabaseReference) in
+            if Error != nil {
+                return
+            }
+            onSuccess(newCommentId!)
+        }
     }
 }

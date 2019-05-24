@@ -15,21 +15,32 @@ class FollowApi {
     
     
     func followAction(uid: String) {
-        guard let currentUser = Api.User.CURRENT_USER else {
-            return
-        }
-        REF_FOLLOWING.child(currentUser.uid).child(uid).setValue(true)
-        REF_FOLLOWERS.child(uid).child(currentUser.uid).setValue(true)
+        REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(uid).setValue(true)
+        REF_FOLLOWERS.child(uid).child(Api.User.CURRENT_USER!.uid).setValue(true)
+        
+        Api.Notification.NotificationToDatabase(uid: uid, objectId: uid, type: "follow")
     }
     
     func unFollowAction(uid: String) {
-        guard let currentUser = Api.User.CURRENT_USER else {
-            return
-        }
-        REF_FOLLOWING.child(currentUser.uid).child(uid).setValue(NSNull())
-        REF_FOLLOWERS.child(uid).child(currentUser.uid).setValue(NSNull())
+        REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).child(uid).setValue(NSNull())
+        REF_FOLLOWERS.child(uid).child(Api.User.CURRENT_USER!.uid).setValue(NSNull())
+        
+        Api.Notification.NotificationRemove(uid: uid, type: "follow")
     }
     
+    func observeFollowingCount(completion: @escaping (Int) -> Void) {
+        REF_FOLLOWING.child(Api.User.CURRENT_USER!.uid).observe(.value, with: { (DataSnapshot) in
+            let count = Int(DataSnapshot.childrenCount)
+            completion(count)
+        })
+    }
+    
+    func observeFollowersCount(completion: @escaping (Int) -> Void) {
+        REF_FOLLOWERS.child(Api.User.CURRENT_USER!.uid).observe(.value, with: { (DataSnapshot) in
+            let count = Int(DataSnapshot.childrenCount)
+            completion(count)
+        })
+    }
     
     
     

@@ -78,6 +78,12 @@ class CommentViewController: UIViewController {
             Api.post_comment.sendDataToDatabase(postId: self.postId, commentId: commentId, onError: { (error) in
                 ProgressHUD.showError(error)
             }, onSuccess: {
+                // notification
+                Api.Post.observePost(postId: self.postId, completion: { (post) in
+                    if post.uid != Api.User.CURRENT_USER?.uid {
+                        Api.Notification.commentNotificationToDatabase(uid: post.uid!, objectId: post.postId!)
+                    }
+                })
                 self.commentTextField.text = ""
                 self.sendButtonDefault()
                 self.view.endEditing(true)

@@ -52,6 +52,9 @@
 		6EF910E322957F7F003F9797 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF910E222957F7F003F9797 /* SearchViewController.swift */; };
 		6EF910E52296898C003F9797 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF910E42296898C003F9797 /* SettingTableViewController.swift */; };
 		6EF910E72296CED2003F9797 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF910E62296CED2003F9797 /* DetailViewController.swift */; };
+		6EF910E92297AD1B003F9797 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF910E82297AD1B003F9797 /* ActivityTableViewCell.swift */; };
+		6EF910EB2297AFE3003F9797 /* NotificationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF910EA2297AFE3003F9797 /* NotificationApi.swift */; };
+		6EF910ED2297CA52003F9797 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF910EC2297CA52003F9797 /* Notification.swift */; };
 		A072D8E862B3347F1C9A28D4 /* Pods_InstagramClone0517.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F3C07F612601E2C72550B /* Pods_InstagramClone0517.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +108,9 @@
 		6EF910E222957F7F003F9797 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6EF910E42296898C003F9797 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		6EF910E62296CED2003F9797 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6EF910E82297AD1B003F9797 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		6EF910EA2297AFE3003F9797 /* NotificationApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationApi.swift; sourceTree = "<group>"; };
+		6EF910EC2297CA52003F9797 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		9658A826F5A7D16ADACF944E /* Pods-InstagramClone0517.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone0517.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramClone0517/Pods-InstagramClone0517.debug.xcconfig"; sourceTree = "<group>"; };
 		A55F3C07F612601E2C72550B /* Pods_InstagramClone0517.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramClone0517.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A66DD8771D13A2093017A5E0 /* Pods-InstagramClone0517.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramClone0517.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstagramClone0517/Pods-InstagramClone0517.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,6 +169,7 @@
 				6EF910CE2292B552003F9797 /* Post_CommentApi.swift */,
 				6EF910D622941863003F9797 /* MyPostApi.swift */,
 				6EF910DE229503AC003F9797 /* FollowApi.swift */,
+				6EF910EA2297AFE3003F9797 /* NotificationApi.swift */,
 				6EF910C722928E7B003F9797 /* Views */,
 				6EF910C022927F9E003F9797 /* Models */,
 				6EF91092228ECC51003F9797 /* ViewControllers */,
@@ -220,6 +227,7 @@
 				6EF910C122928183003F9797 /* Post.swift */,
 				6EF910BE22927F99003F9797 /* UserModel.swift */,
 				6EF910D02292C192003F9797 /* Comment.swift */,
+				6EF910EC2297CA52003F9797 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,6 +237,7 @@
 			children = (
 				6EF910C522928E75003F9797 /* HomeTableViewCell.swift */,
 				6EF910D22292C8DA003F9797 /* CommentTableViewCell.swift */,
+				6EF910E82297AD1B003F9797 /* ActivityTableViewCell.swift */,
 				6EF910D422940F5F003F9797 /* HeaderProfileCollectionReusableView.swift */,
 				6EF910D822941DD8003F9797 /* PhotoCollectionViewCell.swift */,
 				6EF910DC2294F8BF003F9797 /* PeopleTableViewCell.swift */,
@@ -392,6 +401,7 @@
 				6EF910BB228F9B6B003F9797 /* HelperService.swift in Sources */,
 				6EF910D722941863003F9797 /* MyPostApi.swift in Sources */,
 				6EF9108F228EC4AB003F9797 /* SignInViewController.swift in Sources */,
+				6EF910EB2297AFE3003F9797 /* NotificationApi.swift in Sources */,
 				6EF910B0228ED85E003F9797 /* ProgressHUD.m in Sources */,
 				6EF910C222928183003F9797 /* Post.swift in Sources */,
 				6EF910E322957F7F003F9797 /* SearchViewController.swift in Sources */,
@@ -399,6 +409,7 @@
 				6EF91080228EC12D003F9797 /* InstagramClone0517.xcdatamodeld in Sources */,
 				6EF910CF2292B552003F9797 /* Post_CommentApi.swift in Sources */,
 				6EF910C622928E75003F9797 /* HomeTableViewCell.swift in Sources */,
+				6EF910ED2297CA52003F9797 /* Notification.swift in Sources */,
 				6EF9109A228ECCA8003F9797 /* ActivityViewController.swift in Sources */,
 				6EF910B5228EF0DA003F9797 /* Config.swift in Sources */,
 				6EF910D922941DD8003F9797 /* PhotoCollectionViewCell.swift in Sources */,
@@ -415,6 +426,7 @@
 				6EF910B7228EFE07003F9797 /* UserApi.swift in Sources */,
 				6EF910B9228EFF9E003F9797 /* Api.swift in Sources */,
 				6EF910C42292829A003F9797 /* PostApi.swift in Sources */,
+				6EF910E92297AD1B003F9797 /* ActivityTableViewCell.swift in Sources */,
 				6EF91091228EC4B3003F9797 /* SignUpViewController.swift in Sources */,
 				6EF910DF229503AC003F9797 /* FollowApi.swift in Sources */,
 			);

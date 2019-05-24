@@ -110,6 +110,15 @@ class HomeTableViewCell: UITableViewCell {
             self.post?.likes = post.likes
             self.post?.likeCount = post.likeCount
             self.post?.isLiked = post.isLiked
+            
+            // notification
+            if Api.User.CURRENT_USER?.uid != post.uid {
+                if post.isLiked! {
+                    Api.Notification.NotificationToDatabase(uid: post.uid!, objectId: post.postId!, type: "like")
+                }else{
+                    Api.Notification.NotificationRemove(uid: post.uid!, type: "like")
+                }
+            }
         }) { (error) in
             ProgressHUD.showError(error)
         }

@@ -18,4 +18,11 @@ class MyPostApi {
             completion(DataSnapshot.key)
         })
     }
+    
+    func observeMyPostsCount(userId: String, completion: @escaping (Int) -> Void) {
+        REF_MYPOSTS.child(userId).observe(.value, with: { (DataSnapshot) in
+            let count = Int(DataSnapshot.childrenCount)
+            completion(count)
+        })
+    }
 }

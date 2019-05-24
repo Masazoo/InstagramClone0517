@@ -40,6 +40,18 @@ class HeaderProfileCollectionReusableView: UICollectionReusableView {
             profileImageView.sd_setImage(with: profileImageUrl, placeholderImage: UIImage(named: "placeholderImg"))
         }
         
+        Api.MyPosts.observeMyPostsCount(userId: user!.uid!) { (count) in
+            self.postCountLabel.text = count.description
+        }
+        
+        Api.Follow.observeFollowingCount { (count) in
+            self.followingCountLabel.text = count.description
+        }
+        
+        Api.Follow.observeFollowersCount { (count) in
+            self.followerCountLabel.text = count.description
+        }
+        
         if Api.User.CURRENT_USER?.uid == user?.uid {
             followBtn.setTitle("編集する", for: .normal)
             followBtn.addTarget(self, action: #selector(self.goToSetting), for: .touchUpInside)
