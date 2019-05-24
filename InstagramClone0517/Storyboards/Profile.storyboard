@@ -147,6 +147,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="YLL-0o-ZNh" firstAttribute="top" secondItem="sgT-2w-LBl" secondAttribute="bottom" constant="10" id="5YX-4m-bb4"/>
                                         <constraint firstItem="sgT-2w-LBl" firstAttribute="top" secondItem="B1g-Q8-68B" secondAttribute="top" constant="15" id="Bhg-MK-G4F"/>
@@ -188,11 +189,20 @@
                     <connections>
                         <outlet property="collectionView" destination="luz-Du-s5N" id="FFb-N9-iF0"/>
                         <segue destination="Sws-tl-xc5" kind="show" identifier="ProfileToSettingSegue" id="k1u-Rh-rhq"/>
+                        <segue destination="xMg-dI-bXy" kind="show" identifier="ProfileToDetailSegue" id="mCT-ie-yTh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfF-94-Wfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1790" y="2847"/>
+        </scene>
+        <!--DetailViewController-->
+        <scene sceneID="wWi-Ch-E6v">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Discover" referencedIdentifier="DetailViewController" id="xMg-dI-bXy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="udd-al-kn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1462" y="3334"/>
         </scene>
         <!--People View Controller-->
         <scene sceneID="5sf-3X-OJd">
@@ -604,6 +614,7 @@
                     <connections>
                         <outlet property="collectionView" destination="5z3-f2-zNr" id="tIP-L0-R6f"/>
                         <segue destination="Sws-tl-xc5" kind="show" identifier="ProfileUserToSettingSegue" id="FRa-8y-h0r"/>
+                        <segue destination="xMg-dI-bXy" kind="show" identifier="ProfileUserToDetailSegue" id="8mW-cc-PLp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfg-Qb-Gn7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -638,6 +649,7 @@
         <image name="discover" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="k1u-Rh-rhq"/>
+        <segue reference="FRa-8y-h0r"/>
+        <segue reference="8mW-cc-PLp"/>
     </inferredMetricsTieBreakers>
 </document>

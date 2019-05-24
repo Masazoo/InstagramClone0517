@@ -8,11 +8,15 @@
 
 import UIKit
 import SDWebImage
+protocol PhotoCollectionViewCellDelegate {
+    func goToDetailVC(postId: String)
+}
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photo: UIImageView!
     
+    var delegate: PhotoCollectionViewCellDelegate?
     
     var post: Post? {
         didSet {
@@ -31,5 +35,13 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         photo.contentMode = .scaleAspectFill
         photo.clipsToBounds = true
+        
+        let tapGestureForPhoto = UITapGestureRecognizer(target: self, action: #selector(self.photo_TouchUpInside))
+        photo.addGestureRecognizer(tapGestureForPhoto)
+        photo.isUserInteractionEnabled = true
+    }
+    
+    func photo_TouchUpInside() {
+        delegate?.goToDetailVC(postId: post!.postId!)
     }
 }

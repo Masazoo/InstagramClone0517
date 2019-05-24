@@ -49,9 +49,6 @@ class HomeTableViewCell: UITableViewCell {
         
         self.updateLike(post: self.post!)
         
-        Api.Post.observeLikeCount(postId: self.post!.postId!) { (value) in
-            self.likeCountBtn.setTitle("\(value) likes", for: .normal)
-        }
     }
     
     func setupUserInfo() {
